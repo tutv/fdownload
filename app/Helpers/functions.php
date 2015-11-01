@@ -21,3 +21,10 @@ function f_file_get_contents( $url ) {
 
 	return $content;
 }
+
+function get404Error() {
+	return response()->json( [
+		'status' => 'error',
+		'msg'    => '404',
+	] );
+}
