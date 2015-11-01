@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get( '/', function () {
+	return view( 'welcome' );
+} );
+
+Route::group( array( 'prefix' => 'api' ), function () {
+	Route::group( array( 'prefix' => 'zing' ), function () {
+		Route::post( 'mp3', 'ZingMp3Controller@getMp3' );
+	} );
+} );
