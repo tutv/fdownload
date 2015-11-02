@@ -25,16 +25,3 @@ Route::group( [ 'prefix' => 'api' ], function () {
 		//sdfsdfs
 	} );
 } );
-
-function countLineTextFile( $path ) {
-	$count  = 0;
-	$handle = fopen( $path, 'r' );
-	while ( ! feof( $handle ) ) {
-		$line = fgets( $handle );
-		$count ++;
-	}
-
-	fclose( $handle );
-
-	return $count;
-}
