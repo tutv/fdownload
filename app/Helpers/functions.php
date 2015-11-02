@@ -28,3 +28,9 @@ function get404Error() {
 		'msg'    => '404',
 	] );
 }
+
+function onlyAllowPostRequest( $request ) {
+	if ( $request->getMethod() !== 'POST' ) {
+		abort( 404 );
+	};
+}

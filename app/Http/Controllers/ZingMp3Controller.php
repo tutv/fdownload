@@ -83,7 +83,10 @@ class ZingMp3Controller extends Controller {
 	}
 
 	public function getMp3( Request $request ) {
+		onlyAllowPostRequest( $request );
+
 		$link = $request->input( 'url' );
+		dd( $link );
 
 		$zing = new ZingMp3();
 		dd( $zing->getMp3API( $link ) );
