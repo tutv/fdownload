@@ -20,9 +20,21 @@ Route::group( [ 'prefix' => 'api' ], function () {
 		Route::any( 'mp3', 'ZingMp3Controller@getMp3' );
 
 
-
 		//
 		//sdf sdf
 		//sdfsdfs
 	} );
 } );
+
+function countLineTextFile( $path ) {
+	$count  = 0;
+	$handle = fopen( $path, 'r' );
+	while ( ! feof( $handle ) ) {
+		$line = fgets( $handle );
+		$count ++;
+	}
+
+	fclose( $handle );
+
+	return $count;
+}
