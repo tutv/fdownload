@@ -25,6 +25,6 @@ Route::group( [ 'prefix' => 'api' ], function () {
 		//sdfs
 		//sdfss
 		//sdfsdfsdsdfsdfsdf
-		//sdfsdf
+		//sdfsdsdfsdf
 	} );
 } );
