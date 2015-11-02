@@ -22,6 +22,11 @@ function f_file_get_contents( $url ) {
 	return $content;
 }
 
+/**
+ * Get response 404
+ *
+ * @return \Illuminate\Http\JsonResponse
+ */
 function get404Error() {
 	return response()->json( [
 		'status' => 'error',
@@ -29,8 +34,15 @@ function get404Error() {
 	] );
 }
 
+/**
+ * Only allowed POST Request | Abort 404 when request different POST request
+ *
+ * @param $request
+ */
 function onlyAllowPostRequest( $request ) {
-	if ( $request->getMethod() !== 'POST' ) {
+	if ( method_exists( $request, 'getMethod' )
+	     && $request->getMethod() !== 'POST'
+	) {
 		abort( 404 );
-	};
+	}
 }
