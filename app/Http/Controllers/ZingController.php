@@ -10,5 +10,6 @@ class ZingController extends Controller {
 		$url = $request->input( 'url' );
 
 		$mp3 = new ZingMp3( $url );
+
 	}
 }
