@@ -13,6 +13,6 @@ class SoundCloudController extends Controller {
 
 		$soundCloud = new SoundCloud( $url );
 
-		dd( $soundCloud->matchLink() );
+		$soundCloud->getContentAPI();
 	}
 }
