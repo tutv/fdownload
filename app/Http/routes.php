@@ -17,8 +17,7 @@ Route::get( '/', function () {
 
 Route::group( [ 'prefix' => 'api' ], function () {
 	Route::group( array( 'prefix' => 'zing' ), function () {
-		Route::any( 'mp3', 'ZingMp3Controller@getMp3' );
-
+		Route::any( 'mp3', 'ZingController@getZingMp3' );
 
 	} );
 } );

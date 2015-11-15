@@ -16,10 +16,16 @@ require_once __DIR__ . '/unirest/Unirest.php';
  * @return mixed
  */
 function f_file_get_contents( $url ) {
-	$obj_unirest = Unirest\Request::get( $url, null, null );
-	$content     = $obj_unirest->raw_body;
+	try {
+		$obj_unirest = Unirest\Request::get( $url, null, null );
 
-	return $content;
+		return [
+			'content' => $obj_unirest->raw_body,
+			'code'    => $obj_unirest->code
+		];
+	} catch ( Exception $exception ) {
+		die( $exception->getMessage() );
+	}
 }
 
 /**
