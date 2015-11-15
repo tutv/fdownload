@@ -38,7 +38,7 @@ class ZingMp3 {
 	}
 
 	public function handleAPI() {
-		dd( $this->content_API );
+		var_dump( $this->content_API );
 	}
 
 	private function parseLink( $link ) {
