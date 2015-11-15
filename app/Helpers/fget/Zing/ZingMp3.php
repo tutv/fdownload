@@ -19,7 +19,7 @@ class ZingMp3 {
 	private $content_API;
 
 	public function __construct( $link ) {
-		$this->KEY_API = 'fafd463e2131914934b73310aa34a23f';
+		$this->KEY_API = 'a34811d0cdc52c769a54647b6bde97de';
 		$this->getMp3API( $link );
 	}
 
