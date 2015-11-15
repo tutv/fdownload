@@ -13,5 +13,6 @@ class VerifyCsrfToken extends BaseVerifier {
 	protected $except
 		= [
 			'api/zing/mp3',
+			'api/soundcloud',
 		];
 }

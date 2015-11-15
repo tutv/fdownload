@@ -20,4 +20,6 @@ Route::group( [ 'prefix' => 'api' ], function () {
 		Route::any( 'mp3', 'ZingController@getZingMp3' );
 
 	} );
+
+	Route::any( 'soundcloud', 'SoundCloudController@getSong' );
 } );

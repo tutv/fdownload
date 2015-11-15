@@ -12,3 +12,8 @@ namespace App\Helpers\FGet;
  * Zing
  */
 require_once __DIR__ . '/fget/Zing.php';
+
+/**
+ * Sound Cloud
+ */
+require_once __DIR__ . '/fget/SoundCloud.php';
