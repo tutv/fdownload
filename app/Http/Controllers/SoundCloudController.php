@@ -9,10 +9,9 @@ use App\Http\Requests;
 
 class SoundCloudController extends Controller {
 	function getSong( Request $request ) {
-		$url = $request->input( 'url' );
-
+		$url        = $request->input( 'url' );
 		$soundCloud = new SoundCloud( $url );
 
-		$soundCloud->getContentAPI();
+		return response()->json( $soundCloud->getOutput() );
 	}
 }

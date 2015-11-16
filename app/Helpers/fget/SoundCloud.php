@@ -16,9 +16,13 @@ class SoundCloud {
 	private $client_secret;
 	private $link;
 	private $url_API;
+
+	public $status;
+
 	private $content_API;
 	public $object_API;
-	public $status;
+	public $link_stream;
+	public $link_download;
 
 	/**
 	 * Construction with link song
@@ -29,6 +33,12 @@ class SoundCloud {
 		$this->client_id     = '23a36e18a33ee59ab2b356458d2e4328';
 		$this->client_secret = '1c18a2b87e88d18a3a38246a8dc10ee8';
 		$this->link          = $link;
+
+		if ( $this->matchLink() ) {
+			$this->getContentAPI();
+		} else {
+			$this->status = false;
+		}
 	}
 
 	/**
@@ -38,7 +48,7 @@ class SoundCloud {
 	 */
 	public function matchLink() {
 		// example: $link = 'https://soundcloud.com/doanhongnhung24/chuy-n-ph-ng-k-t-c'
-		$pattern = '/soundcloud\.com\/\w*\/\S*/';
+		$pattern = '/soundcloud\.com/';
 
 		if ( preg_match( $pattern, $this->link ) ) {
 			return true;
@@ -73,9 +83,10 @@ class SoundCloud {
 	public function handleAPI() {
 		if ( $this->getStatus() ) {
 			$this->object_API = json_decode( $this->content_API );
-		}
 
-		var_dump( $this->object_API );
+			$this->setLinkStream();
+			$this->setLinkDownload();
+		}
 	}
 
 	/**
@@ -85,5 +96,95 @@ class SoundCloud {
 	 */
 	public function getStatus() {
 		return $this->status;
+	}
+
+	public function getID() {
+		if ( $this->getStatus() ) {
+			return $this->object_API->id;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get title
+	 *
+	 * @return null|string
+	 */
+	public function getTitle() {
+		if ( $this->getStatus() ) {
+			return $this->object_API->title;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get direct link song
+	 *
+	 * @return null|string
+	 */
+	public function setLinkStream() {
+		if ( $this->getStatus() ) {
+			$stream_link = $this->object_API->stream_url . '?client_id='
+			               . $this->client_id;
+
+			$headers = get_headers( $stream_link, 1 );
+
+			$this->link_stream = $headers['Location'];
+		}
+	}
+
+	public function getLinkStream() {
+		return $this->link_stream;
+	}
+
+	/**
+	 * Get description
+	 *
+	 * @return null|string
+	 */
+	public function getDescription() {
+		if ( $this->getStatus() ) {
+			return $this->object_API->description;
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get link download
+	 *
+	 * @return null|string
+	 */
+	public function setLinkDownload() {
+		if ( $this->getStatus() ) {
+			if ( property_exists( $this->object_API, 'download_url' ) ) {
+				$this->link_download = $this->object_API->download_url
+				                       . '?client_id='
+				                       . $this->client_id;
+			}
+		}
+	}
+
+	public function getLinkDownload() {
+		return $this->link_download;
+	}
+
+	public function getOutput() {
+		if ( ! $this->getStatus() ) {
+			return [
+				'status' => 'error',
+				'msg'    => 'Error!',
+			];
+		}
+
+		return [
+			'status'      => 'ok',
+			'title'       => $this->getTitle(),
+			'description' => $this->getDescription(),
+			'stream'      => $this->getLinkStream(),
+			'download'    => $this->getLinkDownload()
+		];
 	}
 }
