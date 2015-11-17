@@ -23,3 +23,5 @@ Route::group( [ 'prefix' => 'api' ], function () {
 
 	Route::any( 'soundcloud', 'SoundCloudController@getSong' );
 } );
+
+Route::post( 'reg', 'MessageController@reg' );
