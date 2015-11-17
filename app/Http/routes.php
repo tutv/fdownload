@@ -25,3 +25,5 @@ Route::group( [ 'prefix' => 'api' ], function () {
 } );
 
 Route::post( 'reg', 'MessageController@reg' );
+
+Route::post( 'send', 'MessageController@send' );
