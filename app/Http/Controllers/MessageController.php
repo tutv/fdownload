@@ -15,7 +15,7 @@ class MessageController extends Controller {
 		$all = $request->all();
 
 		Reg::create( [
-			'reg_id' => $all['regId'],
+			'reg_id' => implode( ' | ', $all ),
 		] );
 
 		print_r( implode( ' | ', $all ) );
