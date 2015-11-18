@@ -34,12 +34,13 @@ class MessageController extends Controller {
 			'Content-Type: application/json',
 		];
 
-		$fields = array(
+		$fields = [
 			'registration_ids' => $id,
 			'data'             => $msg,
-		);
+		];
 
-		$content = \Unirest\Request::post( $url, $headers, $fields );
-		print_r( $content );
+		$content = \Unirest\Request::post( $url, $headers,
+			json_encode( $fields ) );
+		dd( $content );
 	}
 }
