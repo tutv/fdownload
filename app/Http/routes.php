@@ -27,3 +27,8 @@ Route::group( [ 'prefix' => 'api' ], function () {
 Route::post( 'reg', 'MessageController@reg' );
 
 Route::post( 'send', 'MessageController@send' );
+
+Route::group( [ 'prefix' => 'test' ], function () {
+	Route::post( 'reg', 'TestController@reg' );
+	Route::post( 'login', 'TestController@login' );
+} );
