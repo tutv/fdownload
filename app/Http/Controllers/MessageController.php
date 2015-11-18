@@ -30,7 +30,7 @@ class MessageController extends Controller {
 		$url = 'https://android.googleapis.com/gcm/send';
 
 		$headers = [
-			'Authorization: key=' . $this->SERVER_API,
+			'Authorization: key=AIzaSyB_zL7aZOpNdgl-PImDmh8n5mLqxMPvGus',
 			'Content-Type: application/json',
 		];
 
