@@ -11,6 +11,6 @@ class UserX extends Model {
 			'unique_id',
 			'name',
 			'email',
-			'password',
+			'pass',
 		];
 }
