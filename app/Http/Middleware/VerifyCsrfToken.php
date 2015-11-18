@@ -16,5 +16,7 @@ class VerifyCsrfToken extends BaseVerifier {
 			'api/soundcloud',
 			'reg',
 			'send',
+			'test/reg',
+			'test/login'
 		];
 }
