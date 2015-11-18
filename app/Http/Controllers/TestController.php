@@ -15,6 +15,16 @@ class TestController extends Controller {
 		$name  = $request->input( 'name' );
 		$pass  = $request->input( 'password' );
 
+		$users = UserX::all()->where( 'email', $email );
+		if ( $users->count() > 0 ) {
+			$response        = new stdClass();
+			$response->error = true;
+			$response->error_msg
+			                 = 'Email này đã được đăng ký';
+
+			return response()->json( $response );
+		}
+
 		$user = UserX::create( [
 			'email'     => $email,
 			'name'      => $name,
