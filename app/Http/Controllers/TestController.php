@@ -27,8 +27,8 @@ class TestController extends Controller {
 		$user_x             = new stdClass();
 		$user_x->name       = $user->getAttribute( 'name' );
 		$user_x->email      = $user->getAttribute( 'email' );
-		$user_x->created_at = $user->getAttributeValue( 'created_at' );
-		$user_x->updated_at = $user->getAttributeValue( 'updated_at' );
+		$user_x->created_at = $user->created_at->format( 'Y-m-d' );
+		$user_x->updated_at = $user->getAttribute( 'updated_at' );
 		$response->user     = $user_x;
 
 		return response()->json( $response );
