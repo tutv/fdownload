@@ -15,5 +15,6 @@ class VerifyCsrfToken extends BaseVerifier {
 			'api/zing/mp3',
 			'api/soundcloud',
 			'reg',
+			'send',
 		];
 }
