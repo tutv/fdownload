@@ -9,7 +9,7 @@ use App\Http\Requests;
 
 class MessageController extends Controller {
 	var $SERVER_API
-		= 'AIzaSyBYWBMnNVBpZcRSuFnnlGa2_2DKcRZGYus';
+		= 'AIzaSyB_zL7aZOpNdgl-PImDmh8n5mLqxMPvGus';
 
 	public function reg( Request $request ) {
 		$all = $request->all();
