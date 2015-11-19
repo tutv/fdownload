@@ -11,9 +11,10 @@
 |
 */
 
-Route::get( '/', function () {
-	return view( 'welcome' );
-} );
+Route::get( '/', [
+	'as'   => 'home',
+	'uses' => 'TestController@home'
+] );
 
 Route::group( [ 'prefix' => 'api' ], function () {
 	Route::group( array( 'prefix' => 'zing' ), function () {
@@ -32,3 +33,19 @@ Route::group( [ 'prefix' => 'test' ], function () {
 	Route::post( 'reg', 'TestController@reg' );
 	Route::post( 'login', 'TestController@login' );
 } );
+
+
+Route::get( 'auth/login', [
+	'as'   => 'login',
+	'uses' => 'Auth\AuthController@getLogin'
+] );
+Route::post( 'auth/login', 'Auth\AuthController@postLogin' );
+Route::get( 'auth/logout', 'Auth\AuthController@getLogout' );
+
+// Registration routes...
+Route::get( 'auth/register', [
+	'as'   => 'register',
+	'uses' => 'Auth\AuthController@getRegister'
+] );
+
+Route::post( 'auth/register', 'Auth\AuthController@postRegister' );

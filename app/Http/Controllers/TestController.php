@@ -10,6 +10,10 @@ use App\Http\Requests;
 use stdClass;
 
 class TestController extends Controller {
+	public function home() {
+		return view( 'welcome' );
+	}
+
 	public function reg( Request $request ) {
 		$email = $request->input( 'email' );
 		$name  = $request->input( 'name' );
