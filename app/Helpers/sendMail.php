@@ -45,7 +45,7 @@ function sendMail( FriesMail $friesMail ) {
 	curl_setopt( $session, CURLOPT_POST, true );
 	curl_setopt( $session, CURLOPT_POSTFIELDS, $params );
 	curl_setopt( $session, CURLOPT_HEADER, false );
-	curl_setopt( $session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2 );
+	curl_setopt( $session, CURLOPT_SSLVERSION, 6 );
 	curl_setopt( $session, CURLOPT_RETURNTRANSFER, true );
 	$response = curl_exec( $session );
 	curl_close( $session );
