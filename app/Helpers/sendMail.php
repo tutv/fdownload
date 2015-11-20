@@ -18,8 +18,6 @@ function sendMail( FriesMail $friesMail ) {
 	$user = 'tutv95';
 	$pass = 'hackathonuet2015';
 
-//	dd( $friesMail->getHtml() );
-
 	$json_string = array(
 
 		'to'       => $friesMail->getTo(),
