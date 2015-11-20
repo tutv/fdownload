@@ -49,3 +49,5 @@ Route::get( 'auth/register', [
 ] );
 
 Route::post( 'auth/register', 'Auth\AuthController@postRegister' );
+
+Route::get( '/sendMail', 'TestController@sendMail' );

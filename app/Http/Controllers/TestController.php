@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\UserX;
 use DateTimeZone;
+use FriesMail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -95,5 +96,17 @@ class TestController extends Controller {
 		                 = 'Éo có tài khoản này hoặc gõ sai mật cmn khẩu rồi :]]';
 
 		return response()->json( $response );
+	}
+
+	public function sendMail() {
+		$subject   = 'Xác nhận tài khoản!';
+		$html
+		           = '<h1>Đây là tai tồ</h1><p>Còn đây là nội dung nhé</p>. Tiếp theo là <a href="http://tutran.me">Link</a>.';
+		$friesMail = new FriesMail( $subject, $html );
+		$friesMail->addTo( 'tutv95@gmail.com' )
+		          ->setFrom( 'fries.uet@gmail.com' )
+		          ->setFromName( 'Fries Team' );
+
+		sendMail( $friesMail );
 	}
 }
