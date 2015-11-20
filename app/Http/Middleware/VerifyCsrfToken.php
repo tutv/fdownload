@@ -17,6 +17,7 @@ class VerifyCsrfToken extends BaseVerifier {
 			'reg',
 			'send',
 			'test/reg',
-			'test/login'
+			'test/login',
+			'save',
 		];
 }

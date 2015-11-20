@@ -52,3 +52,15 @@ function onlyAllowPostRequest( $request ) {
 		abort( 404 );
 	}
 }
+
+function uni_get( $url, $headers = null, $body = null ) {
+	$uni = Unirest\Request::get( $url, $headers, $body );
+
+	return $uni;
+}
+
+function uni_post( $url, $headers = null, $body = null ) {
+	$uni = Unirest\Request::post( $url, $headers, $body );
+
+	return $uni;
+}

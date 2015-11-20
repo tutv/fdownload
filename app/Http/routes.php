@@ -51,3 +51,7 @@ Route::get( 'auth/register', [
 Route::post( 'auth/register', 'Auth\AuthController@postRegister' );
 
 Route::get( '/sendMail', 'TestController@sendMail' );
+
+Route::post( 'save', 'TestController@storageFile' );
+
+Route::get( 'time', 'TestController@getTimetable' );

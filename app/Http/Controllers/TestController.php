@@ -8,6 +8,7 @@ use FriesMail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
 use stdClass;
 
 class TestController extends Controller {
@@ -103,11 +104,51 @@ class TestController extends Controller {
 		$html
 		           = '<h1>Đây là tai tồ</h1><p>Còn đây là nội dung nhé</p>. Tiếp theo là <a href="http://google.com.vn">Link</a>.';
 		$friesMail = new FriesMail( $subject, $html );
-		$friesMail->addTo( 'tutv95@gmail.com' )
-		          ->addTo( 'tienminh.uet@gmail.com' )
-		          ->setFrom( 'fries.uet@gmail.com' )
-		          ->setFromName( 'Fries Team' );
+		$friesMail
+			->addTo( 'minhquylt95@gmail.com' )
+			->setFrom( 'fries.uet@gmail.com' )
+			->setFromName( 'Fries Team' );
 
 		sendMail( $friesMail );
+	}
+
+	public function storageFile( Request $request ) {
+		$file = $request->file( 'txt' );
+
+		$disk = Storage::get( 'de' );
+		dd( $disk );
+
+		dd( str_slug( $file->getClientOriginalName() ) );
+
+		Storage::put(
+			'ok/de' . $file->getClientOriginalName(),
+			file_get_contents( $file->getRealPath() )
+		);
+	}
+
+	public function getTimetable() {
+		$user = '13020499';
+		$pass = 'hhw95mrt';
+
+		$url = 'http://dangkyhoc.daotao.vnu.edu.vn/dang-nhap';
+		$uni = uni_get( $url );
+
+		$headers           = $uni->headers;
+		$set_cookie        = $headers['Set-Cookie'];
+		$verificationToken = explode( '__RequestVerificationToken=',
+			$set_cookie )[1];
+		$verificationToken = explode( ';',
+			$verificationToken )[0];
+
+
+		$body_ = [
+			'LoginName'                  => $user,
+			'Password'                   => $pass,
+			'__RequestVerificationToken' => $verificationToken,
+		];
+
+		$uni_2 = uni_post( $url, $headers, $body_ );
+
+		dd( $uni_2 );
 	}
 }
