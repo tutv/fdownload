@@ -99,11 +99,12 @@ class TestController extends Controller {
 	}
 
 	public function sendMail() {
-		$subject   = 'Xác nhận tài khoản!';
+		$subject   = 'Đây là email test thử thôi :v';
 		$html
-		           = '<h1>Đây là tai tồ</h1><p>Còn đây là nội dung nhé</p>. Tiếp theo là <a href="http://tutran.me">Link</a>.';
+		           = '<h1>Đây là tai tồ</h1><p>Còn đây là nội dung nhé</p>. Tiếp theo là <a href="http://google.com.vn">Link</a>.';
 		$friesMail = new FriesMail( $subject, $html );
 		$friesMail->addTo( 'tutv95@gmail.com' )
+		          ->addTo( 'tienminh.uet@gmail.com' )
 		          ->setFrom( 'fries.uet@gmail.com' )
 		          ->setFromName( 'Fries Team' );
 
